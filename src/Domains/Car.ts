@@ -1,5 +1,7 @@
 import ICar from '../Interfaces/ICar';
 
+// "Cada programa de software está relacionado a alguma atividade ou interesse do seu usuário. Essa área de assunto em que o usuário utiliza o programa é vista como o domínio do software."
+
 class Car {
   /* 
     "O 'protected' age de forma semelhante ao 'private', com a exceção de que os membros declarados 'protected' também podem ser acessados dentro das classes derivadas."
