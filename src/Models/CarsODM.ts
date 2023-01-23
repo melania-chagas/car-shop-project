@@ -27,6 +27,10 @@ class CarsODM {
       ...car, 
     });
   }
+
+  public async getAllCarsODM() {
+    return this.model.find();
+  }
 }
 
 export default CarsODM;

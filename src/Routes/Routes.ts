@@ -5,7 +5,12 @@ const routes = Router();
 
 routes.post(
   '/cars',
-  (req, res, next) => new CarsController(req, res, next).carRegistrationController(),
+  (req, res, next) => new CarsController(req, res, next).controllerCarRegistration(),
+);
+
+routes.get(
+  '/cars',
+  (req, res, next) => new CarsController(req, res, next).controllerGetAllCars(),
 );
 
 export default routes;

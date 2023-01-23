@@ -16,7 +16,7 @@ class CarsController {
     this.service = new CarsService();
   }
 
-  public async carRegistrationController() {
+  public async controllerCarRegistration() {
     const car: ICar = {
       model: this.req.body.model,
       year: this.req.body.year,
@@ -28,8 +28,17 @@ class CarsController {
     };
 
     try {
-      const registeredCar = await this.service.carRegistrationService(car);
+      const registeredCar = await this.service.serviceCarRegistration(car);
       return this.res.status(statusCodes.created).json(registeredCar);
+    } catch (error) {
+      this.next(error);
+    }
+  }
+
+  public async controllerGetAllCars() {
+    try {
+      const allCars = await this.service.serviceGetAllCars();
+      return this.res.status(statusCodes.OK).json(allCars);
     } catch (error) {
       this.next(error);
     }
