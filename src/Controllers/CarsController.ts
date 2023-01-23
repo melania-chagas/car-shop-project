@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
+import { isValidObjectId } from 'mongoose';
 import statusCodes from '../Helpers/StatusCodes';
 import ICar from '../Interfaces/ICar';
 import CarsService from '../Services/CarsService';
@@ -39,6 +40,30 @@ class CarsController {
     try {
       const allCars = await this.service.serviceGetAllCars();
       return this.res.status(statusCodes.OK).json(allCars);
+    } catch (error) {
+      this.next(error);
+    }
+  }
+
+  public async controllerGetCarById() {
+    try {
+      const { id } = this.req.params;
+
+      if (!isValidObjectId(id)) {
+        return this.res.status(statusCodes.UnprocessableEntity).json({
+          message: 'Invalid mongo id', 
+        });
+      }
+
+      const car = await this.service.serviceGetCarById(id);
+
+      if (!car) {
+        return this.res.status(statusCodes.notFound).json({
+          message: 'Car not found',
+        });
+      }
+
+      return this.res.status(statusCodes.OK).json(car);
     } catch (error) {
       this.next(error);
     }

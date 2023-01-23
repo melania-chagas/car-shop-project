@@ -9,6 +9,11 @@ routes.post(
 );
 
 routes.get(
+  '/cars/:id',
+  (req, res, next) => new CarsController(req, res, next).controllerGetCarById(),
+);
+
+routes.get(
   '/cars',
   (req, res, next) => new CarsController(req, res, next).controllerGetAllCars(),
 );

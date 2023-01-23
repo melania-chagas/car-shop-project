@@ -26,6 +26,22 @@ class CarsService {
       return { id, model, year, color, status, buyValue, doorsQty, seatsQty };
     });
   }
+
+  public async serviceGetCarById(id: string) {
+    const carODM = new CarsODM();
+    const car = await carODM.getCarByIdODM(id);
+    if (!car) return null;
+    return {
+      id: car._id,
+      model: car.model,
+      year: car.year,
+      color: car.color,
+      status: car.status,
+      buyValue: car.buyValue,
+      doorsQty: car.doorsQty,
+      seatsQty: car.seatsQty,
+    };
+  }
 }
 
 export default CarsService;

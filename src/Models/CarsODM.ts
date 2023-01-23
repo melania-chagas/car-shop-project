@@ -31,6 +31,10 @@ class CarsODM {
   public async getAllCarsODM() {
     return this.model.find();
   }
+
+  public async getCarByIdODM(id: string) {
+    return this.model.findById(id);
+  }
 }
 
 export default CarsODM;
