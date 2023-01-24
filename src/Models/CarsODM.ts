@@ -35,6 +35,12 @@ class CarsODM {
   public async getCarByIdODM(id: string) {
     return this.model.findById(id);
   }
+
+  public async updateCarByIdODM(id: string, update: ICar) {
+    // https://mongoosejs.com/docs/api.html#model_Model-findByIdAndUpdate
+    // [options.new=false] «Booleano» se verdadeiro, retorna o documento modificado em vez do original.
+    return this.model.findByIdAndUpdate(id, { ...update }, { new: true });
+  }
 }
 
 export default CarsODM;

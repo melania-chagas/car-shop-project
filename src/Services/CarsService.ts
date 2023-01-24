@@ -42,6 +42,22 @@ class CarsService {
       seatsQty: car.seatsQty,
     };
   }
+
+  public async serviceUpdateCarById(id: string, update: ICar): Promise<any> {
+    const carODM = new CarsODM();
+    const updatedCar = await carODM.updateCarByIdODM(id, update);
+    if (!updatedCar) return null;
+    return {
+      id: updatedCar._id,
+      model: updatedCar.model,
+      year: updatedCar.year,
+      color: updatedCar.color,
+      status: updatedCar.status,
+      buyValue: updatedCar.buyValue,
+      doorsQty: updatedCar.doorsQty,
+      seatsQty: updatedCar.seatsQty,
+    };
+  }
 }
 
 export default CarsService;
