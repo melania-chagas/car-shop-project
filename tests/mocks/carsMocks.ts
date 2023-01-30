@@ -48,10 +48,41 @@ const carOutputODM = {
   __v: 0,
 };
 
+const dataToBeUpdated = {
+  model: 'Marea',
+  year: 2002,
+  color: 'Blue',
+  status: true,
+  buyValue: 12.000,
+  doorsQty: 2,
+  seatsQty: 5,
+};
+
+const updatedData = {
+  id: '6348513f34c397abcad040b2',
+  model: 'Marea',
+  year: 2002,
+  color: 'Blue',
+  status: true,
+  buyValue: 12.000,
+  doorsQty: 2,
+  seatsQty: 5,
+};
+
+const invalidMongoId = '63cfd37e';
+
+const errorMessage = {
+  message: 'Invalid mongo id',
+};
+
 export {
   bodyInput,
   registeredCar,
   allCars,
   carId,
   carOutputODM,
+  dataToBeUpdated,
+  updatedData,
+  invalidMongoId,
+  errorMessage,
 };

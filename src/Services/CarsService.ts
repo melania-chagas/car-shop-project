@@ -5,7 +5,7 @@ import CarsODM from '../Models/CarsODM';
 class CarsService {
   public async serviceCarRegistration(car: ICar) {
     const carODM = new CarsODM();
-    const registeredCar = await carODM.carRegistrationODM(car);
+    const registeredCar = await carODM.registerVehicleODM(car);
     return new Car({
       id: registeredCar.id,
       model: registeredCar.model,
@@ -20,7 +20,7 @@ class CarsService {
 
   public async serviceGetAllCars() {
     const carODM = new CarsODM();
-    const allCars = await carODM.getAllCarsODM();
+    const allCars = await carODM.getAllVehiclesODM();
     return allCars.map((car) => {
       const { id, model, year, color, status, buyValue, doorsQty, seatsQty } = car;
       return { id, model, year, color, status, buyValue, doorsQty, seatsQty };
@@ -29,7 +29,7 @@ class CarsService {
 
   public async serviceGetCarById(id: string) {
     const carODM = new CarsODM();
-    const car = await carODM.getCarByIdODM(id);
+    const car = await carODM.getVehicleByIdODM(id);
     if (!car) return null;
     return {
       id: car._id,
@@ -45,7 +45,7 @@ class CarsService {
 
   public async serviceUpdateCarById(id: string, update: ICar): Promise<any> {
     const carODM = new CarsODM();
-    const updatedCar = await carODM.updateCarByIdODM(id, update);
+    const updatedCar = await carODM.updateVehicleByIdODM(id, update);
     if (!updatedCar) return null;
     return {
       id: updatedCar._id,

@@ -48,8 +48,7 @@ class CarsController {
   public async controllerGetCarById() {
     try {
       const { id } = this.req.params;
-
-      if (!isValidObjectId(id)) {
+      if (!id || !isValidObjectId(id)) {
         return this.res.status(statusCodes.UnprocessableEntity).json({
           message: 'Invalid mongo id', 
         });
@@ -79,7 +78,7 @@ class CarsController {
           message: 'Invalid mongo id', 
         });
       }
-      
+
       const updatedCar = await this.service.serviceUpdateCarById(id, update);
 
       if (!updatedCar) {

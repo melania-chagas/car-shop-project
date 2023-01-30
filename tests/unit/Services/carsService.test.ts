@@ -2,7 +2,13 @@ import { expect } from 'chai';
 import sinon from 'sinon';
 import { Model } from 'mongoose';
 import CarsService from '../../../src/Services/CarsService';
-import { allCars, bodyInput, carId, carOutputODM, registeredCar } from '../../mocks/carsMocks';
+import {
+  allCars,
+  bodyInput,
+  carId,
+  carOutputODM,
+  registeredCar,
+} from '../../mocks/carsMocks';
 
 describe('Teste acerca da rota /cars', function () {
   it('Verifica se é possível cadastrar um novo carro no banco de dados', async function () {
