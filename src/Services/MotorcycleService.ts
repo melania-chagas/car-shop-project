@@ -17,6 +17,31 @@ class MotorcycleService {
       engineCapacity: registeredMotocycle.engineCapacity,
     });
   }
+
+  public async serviceGetAllMotorcycles() {
+    const motoODM = new MotoODM();
+    const allMotorcycles = await motoODM.getAllVehiclesODM();
+    return allMotorcycles.map((moto) => {
+      const { id, model, year, color, status, buyValue, category, engineCapacity } = moto;
+      return { id, model, year, color, status, buyValue, category, engineCapacity };
+    });
+  }
+
+  public async serviceGetMotoById(id: string) {
+    const motoODM = new MotoODM();
+    const moto = await motoODM.getVehicleByIdODM(id);
+    if (!moto) return null;
+    return {
+      id: moto._id,
+      model: moto.model,
+      year: moto.year,
+      color: moto.color,
+      status: moto.status,
+      buyValue: moto.buyValue,
+      category: moto.category,
+      engineCapacity: moto.engineCapacity,
+    };
+  }
 }
 
 export default MotorcycleService;

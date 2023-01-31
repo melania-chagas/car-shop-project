@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
+import { isValidObjectId } from 'mongoose';
 import statusCodes from '../Helpers/StatusCodes';
 import IMotorcycle from '../Interfaces/IMotorcycle';
 import MotorcycleService from '../Services/MotorcycleService';
@@ -30,6 +31,38 @@ export default class MotorcycleController {
     try {
       const registeredMotorcycle = await this.service.serviceMotorcycleRegistration(motorcycle);
       return this.res.status(statusCodes.created).json(registeredMotorcycle);
+    } catch (error) {
+      this.next(error);
+    }
+  }
+
+  public async controllerGetAllMotorcycles() {
+    try {
+      const allMotorcycles = await this.service.serviceGetAllMotorcycles();
+      return this.res.status(statusCodes.OK).json(allMotorcycles);
+    } catch (error) {
+      this.next(error);
+    }
+  }
+
+  public async controllerGetMotoById() {
+    try {
+      const { id } = this.req.params;
+      if (!id || !isValidObjectId(id)) {
+        return this.res.status(statusCodes.UnprocessableEntity).json({
+          message: 'Invalid mongo id', 
+        });
+      }
+
+      const moto = await this.service.serviceGetMotoById(id);
+
+      if (!moto) {
+        return this.res.status(statusCodes.notFound).json({
+          message: 'Motorcycle not found',
+        });
+      }
+
+      return this.res.status(statusCodes.OK).json(moto);
     } catch (error) {
       this.next(error);
     }
