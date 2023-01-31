@@ -42,6 +42,22 @@ class MotorcycleService {
       engineCapacity: moto.engineCapacity,
     };
   }
+
+  public async serviceUpdateMotoById(id: string, update: IMotorcycle): Promise<any> {
+    const motoODM = new MotoODM();
+    const updatedMoto = await motoODM.updateVehicleByIdODM(id, update);
+    if (!updatedMoto) return null;
+    return {
+      id: updatedMoto._id,
+      model: updatedMoto.model,
+      year: updatedMoto.year,
+      color: updatedMoto.color,
+      status: updatedMoto.status,
+      buyValue: updatedMoto.buyValue,
+      category: updatedMoto.category,
+      engineCapacity: updatedMoto.engineCapacity,
+    };
+  }
 }
 
 export default MotorcycleService;
