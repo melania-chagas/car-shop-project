@@ -58,14 +58,25 @@ const dataToBeUpdated = {
   seatsQty: 5,
 };
 
-const updatedData = {
-  id: '6348513f34c397abcad040b2',
+const dataUpdated = {
+  _id: '63e24f9fcf35c4e4271deff3',
   model: 'Marea',
   year: 2002,
   color: 'Blue',
   status: true,
-  buyValue: 12.000,
-  doorsQty: 2,
+  buyValue: 15.99,
+  doorsQty: 4,
+  seatsQty: 5,
+};
+
+const dataUpdated2 = {
+  id: '63e24f9fcf35c4e4271deff3',
+  model: 'Marea',
+  year: 2002,
+  color: 'Blue',
+  status: true,
+  buyValue: 15.99,
+  doorsQty: 4,
   seatsQty: 5,
 };
 
@@ -82,7 +93,8 @@ export {
   carId,
   carOutputODM,
   dataToBeUpdated,
-  updatedData,
   invalidMongoId,
   errorMessage,
+  dataUpdated,
+  dataUpdated2,
 };

@@ -7,6 +7,9 @@ import {
   bodyInput,
   carId,
   carOutputODM,
+  dataToBeUpdated,
+  dataUpdated,
+  dataUpdated2,
   registeredCar,
 } from '../../mocks/carsMocks';
 
@@ -38,6 +41,15 @@ describe('Teste acerca da rota /cars', function () {
     const result = await service.serviceGetCarById(carId);
 
     expect(result).to.be.deep.equal(registeredCar);
+  });
+
+  it('Verifica se é possível atualizar os dados de um carro com base em seu id', async function () {
+    sinon.stub(Model, 'findByIdAndUpdate').resolves(dataUpdated);
+
+    const service = new CarsService();
+    const result = await service.serviceUpdateCarById(carId, dataToBeUpdated);
+
+    expect(result).to.be.deep.equal(dataUpdated2);
   });
 
   afterEach(function () {
